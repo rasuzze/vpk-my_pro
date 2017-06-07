@@ -11,4 +11,14 @@ class PerkOrganizacija extends Model
     {
         return $this->hasMany('App\PaskelbtasKonkursas');
     }
+    public function paskelbtas_konkurso_ts()
+    {
+        return $this->hasMany('App\PaskelbtasKonkursoTs');
+    }
+    public function scopeSearchPo($query, $searchpo) 
+    {
+    	return $query->where('pavadinimas', 'like', '%' .$searchpo. '%')  
+    		->orWhere('adresas', 'like', '%' .$searchpo. '%')
+            ->orWhere('kodas', 'like', '%' .$searchpo. '%');    		   		
+    }
 }

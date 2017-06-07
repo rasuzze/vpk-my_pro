@@ -1,15 +1,32 @@
 @extends('layouts.app')
 
-@section('content')
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-<div class="container">
-    <h3>Kalendorius</h3>
+<!-- @section('content')
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.print.css"/>
 
-    <div id='calendar'></div>
+
+
+<div class="container">
+
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+
+          <h1> Calendar </h1>
+{!! $calendar->calendar() !!}
+{!! $calendar->script() !!}
+           
+
+        </div>
+
+    </div>
+
 </div>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+@endsection -->
+<!-- @section('script')
 <script>
     $(document).ready(function() {
         // page is now ready, initialize the calendar...
@@ -27,4 +44,4 @@
         })
     });
 </script>
-@endsection
+@endsection -->

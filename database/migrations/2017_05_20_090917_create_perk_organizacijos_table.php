@@ -16,10 +16,10 @@ class CreatePerkOrganizacijosTable extends Migration
         Schema::create('perk_organizacijas', function (Blueprint $table) {
              $table->increments('id');
             $table->string('pavadinimas');
-            $table->decimal('kodas', 9, 0)->unsigned();
-            $table->string('adresas');           
+            $table->decimal('kodas', 9, 0)->unsigned()->nullable();
+            $table->string('adresas')->nullable();           
             $table->string('email')->nullable();
-            $table->decimal('tel', 9, 0)->unsigned();
+            $table->decimal('tel',13, 0)->unsigned()->nullable();
         });
     }
 

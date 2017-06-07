@@ -12,11 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('paskelbtik');
 });
 
 Auth::routes();
 Route::resource('paskelbtik', 'PaskelbtasKonkursasController');
+Route::resource('paskelbtits', 'PaskelbtasKonkursoTsController');
+Route::resource('suvestine', 'KonkursuSuvestineController');
+Route::resource('po', 'PerkanciojiOrganizacijaController');
+Route::delete('/file/{id}', 'FileUploadController@delete');
+Route::resource('sutartys', 'SutartysController');
 Route::get('/kalendorius', 'KalendoriusController@index')->name('kalendorius');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+// Route::post('/paskelbtik/create/data', 'PaskelbtasKonkursasController@getDataFromSesion')->name('getdata');
+
 

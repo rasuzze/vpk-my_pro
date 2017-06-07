@@ -3,13 +3,14 @@
 @section('content')
 <div class="container">  
   <div class="row">
-    <div class="col-md-2"><h4>Konkursų sąrašas</h4></div>
-    
+    <div class="col-md-12"><h4>Konkursų techninių specifikacijų sąrašas</h4></div>
+  </div>
+  <div class="row">  
     <div class="col-md-8 text-right">
       <!-- Search input -->
-      <form id="formName" action={{ route('paskelbtik.index') }} method="get" class="form-search form-horizontal pull-right">     
+      <form id="formName" action={{ route('paskelbtits.index') }} method="get" class="form-search form-horizontal pull-right">     
         <div class="input-group">
-          <input type="text" class="form-control" name="search" placeholder="Ieškoti" value="{{ isset($search) ? $search : '' }}">
+          <input type="text" class="form-control" name="search" placeholder="Ieškoti" value="{{ isset($searchTS) ? $searchTS : '' }}">
           <span class="input-group-btn">
           <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></span></button>
           </span> 
@@ -25,9 +26,9 @@
         </div>        
       </form>      
     </div>
-    <div class="col-md-2 col-xs-12">
+    <div class="col-md-4 col-xs-12 text-right">
       @if(auth()->check())
-        <a href="paskelbtik/create"><button class="btn btn-primary">Naujas Konkursas</button></a>
+        <a href="paskelbtits/create"><button class="btn btn-primary">Naujas TS projektas</button></a>
       @endif
     </div>
   </div>
@@ -37,51 +38,46 @@
       <table id="myTable" class="table table-hover">
         
         <thead>
-          <tr>
-            <th>Numeris</th>             
+          <tr>  
+            <th>Numeris</th>          
             <th>Pavadinimas</th>           
-            <th>Konkurso data</th>
-            <th>Valanda</th>
-            <th></th> 
-            <th></th>        
+            <th>Paskelbimo data</th>
+            <th>Galiojimo data</th>         
           </tr>
         </thead>
         <tbody>
           @foreach ($konkursai as $konkursas)         
          <tr> 
           <td>{{$konkursas->numeris}}</td>                
-           <td style="text-transform: uppercase;"><a href="/paskelbtik/{{$konkursas->id}}">{{$konkursas->pavadinimas}}</a></td>
+           <td style="text-transform: uppercase;"><a href="/paskelbtits/{{$konkursas->id}}">{{$konkursas->pavadinimas}}</a></td>
+          <td>{{$konkursas->paskelb_data}}</td>
          
-          @if($konkursas->konkurso_data > $today)
-              <td>{{$konkursas->konkurso_data}}</td>
+          @if($konkursas->galiojimo_data > $today)
+              <td>{{$konkursas->galiojimo_data}}</td>
            
-            @elseif($today > $konkursas->konkurso_data)
-             <td style="background-color: #FFFF99">{{$konkursas->konkurso_data}}</td> 
+            @elseif($today > $konkursas->galiojimo_data)
+             <td style="background-color: #FFFF99">{{$konkursas->galiojimo_data}}</td> 
            
-            @elseif($konkursas->konkurso_data ==  $today)
-              <td style="background-color: #red;">{{$konkursas->konkurso_data}}</td> 
+            @elseif($konkursas->galiojimo_data ==  $today)
+              <td style="background-color: #red;">{{$konkursas->galiojimo_data}}</td> 
             
-          @endif
-           <td>{{$konkursas->valanda}}</td>
-           <!-- Pasiimam is modelio sarysio po -->
-         <!--   <td>{{$konkursas->perk_organizacijas->pavadinimas}}</td> -->           
+          @endif        
            @if(auth()->check())
            <td align="center">
-                  <form action="/paskelbtik/{{$konkursas->id}}" method="post">
+                  <form action="/paskelbtits/{{$konkursas->id}}" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="delete">
                       <button class="btn btn-xs btn-default" value="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
                   </form>                  
             </td>
             <td>
-              <a href="/paskelbtik/{{$konkursas->id}}/edit"><button class="btn btn-xs btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+              <a href="/paskelbtits/{{$konkursas->id}}/edit"><button class="btn btn-xs btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
             </td>           
             @endif
          </tr>         
          @endforeach
         </tbody>
-      </table>
-     
+      </table>     
     </div>
   </div>
   
@@ -90,7 +86,7 @@
           <div class="row">            
               <div class="col col-xs-12">
                 <ul class="pagination hidden-xs pull-right">
-                  <li>{{ $konkursai->appends(['search' => $search])->links() }}</li>                
+                  <li>{{ $konkursai->appends(['searchTS' => $searchTS])->links() }}</li>                
                 </ul>
                 <ul class="pagination visible-xs pull-right">
                   <li><a href="#">«</a></li>
@@ -103,16 +99,4 @@
 
 @endsection
 
-@section('checkboxJquery')
 
-$(document).ready(function(){
-
-    $("#formName").on("change", function(){
-        $("#formName").append('selected', true);
-        $("#formName").submit();
-        preventDefault();
-    });
-});
-
-
-@endsection
