@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('paskelbtik');
+    return redirect('login');
 });
 
 Auth::routes();

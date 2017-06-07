@@ -113,6 +113,4 @@ $(document).ready(function(){
         preventDefault();
     });
 });
-
-
 @endsection

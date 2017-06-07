@@ -16,12 +16,13 @@ class CreateSutartisTable extends Migration
         Schema::create('sutartis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pavadinimas');
+            $table->string('numeris');
             $table->date('sutarties_data');            
             $table->decimal('sutarties_suma', 15, 2)->unsigned()->nullable();
             $table->date('sutartis_galioja')->nullable();
             $table->string('pastabos')->nullable();
-            $table->integer('paskelbtas_konkursas_id')->unsigned(); 
-            $table->foreign('paskelbtas_konkursas_id')->references("id")->on("paskelbtas_konkursas");
+            $table->integer('po_id')->unsigned();  
+            $table->foreign('po_id')->references("id")->on("perk_organizacijas");
             $table->timestamps();
         });
     }

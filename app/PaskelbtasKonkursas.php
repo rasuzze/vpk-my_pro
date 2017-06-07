@@ -20,12 +20,7 @@ class PaskelbtasKonkursas extends Model implements \MaddHatter\LaravelFullcalend
     public function file_uploads()
     {
         return $this->hasMany('App\FileUpload');
-    }
-
-    public function sutartis()
-    {
-        return $this->belongsTo('App\Sutartis');
-    }
+    }   
    
     public function users()
     {

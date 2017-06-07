@@ -17,9 +17,7 @@ class CreateFileUploadsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('paskelbtas_konkursas_id')->unsigned();  
-            $table->foreign('paskelbtas_konkursas_id')->references("id")->on("paskelbtas_konkursas");
-            // $table->integer('paskelbtas_konkurso_ts_id')->unsigned()->nullable();
-            // $table->foreign('paskelbtas_konkurso_ts_id')->references("id")->on("paskelbtas_konkurso_ts");
+            $table->foreign('paskelbtas_konkursas_id')->references("id")->on("paskelbtas_konkursas");           
             $table->timestamps();
         });
     }

@@ -11,9 +11,12 @@ class Sutartis extends Model
         return $this->belongsTo('App\PaskelbtasKonkursas', 'paskelbtas_konkursas_id');
     }
     public function scopeSearchSu($query, $searchSu) 
+    {       
+    	return $query->where('pavadinimas', 'like', '%' .$searchSu. '%')    	
+            ->orWhere('numeris', 'like', '%' .$searchSu. '%');    		   		
+    }
+    public function perk_organizacijas()
     {
-    	return $query->where('pavadinimas', 'like', '%' .$searchSu. '%');  
-    		
-            // ->orWhere('kodas', 'like', '%' .$searchpo. '%');    		   		
+        return $this->belongsTo('App\PerkOrganizacija', 'po_id');
     }
 }

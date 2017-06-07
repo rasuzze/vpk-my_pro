@@ -22,20 +22,20 @@ class PaskelbtasKonkursoTsController extends Controller
         $today = Carbon::today();  
         $today = $today->toDateString();      
         $searchTS = $request->input('search');
-        // $pasibaige = $request->get('pasibaige');      
+        $pasibaige = $request->get('pasibaige');      
         $konkursai =  PaskelbtasKonkursoTs::orderBy('galiojimo_data', 'DESC');        
                 // checkbox condition      
-        // if($pasibaige === 'on') {
-        //   $konkursai=$konkursai->where('konkurso_data', '>=', $today);
-        // }elseif($pasibaige === 'end'){
-        //    $konkursai=$konkursai->where('konkurso_data', '<', $today);
-        // }elseif($pasibaige === 'all'){
-        //   $konkursai =  PaskelbtasKonkursas::orderBy('konkurso_data', 'DESC');
-        // }
+        if($pasibaige === 'on') {
+          $konkursai=$konkursai->where('galiojimo_data', '>=', $today);
+        }elseif($pasibaige === 'end'){
+           $konkursai=$konkursai->where('galiojimo_data', '<', $today);
+        }elseif($pasibaige === 'all'){
+          $konkursai =  PaskelbtasKonkursoTs::orderBy('galiojimo_data', 'DESC');
+        }
         if ( isset($searchTS)){
            $konkursai =$konkursai->searchTS($searchTS);
         }                                    
-           $konkursai =$konkursai->paginate(10); 
+           $konkursai =$konkursai->paginate(8); 
            
        return view('konkursaits.index', compact('searchTS', 'konkursai', 'today'));
     }
@@ -63,7 +63,7 @@ class PaskelbtasKonkursoTsController extends Controller
         // validaton
        $this->validate($request, [
         'paskelb_data'=>'required|date|before:tomorrow', 
-        'numeris'=>'required|min:6|max:9',         
+        'numeris'=>'required|min:6|max:9|unique:paskelbtas_konkurso_ts',         
         'pavadinimas'=>'required', 
         'nuoroda'=>'required', 
         'galiojimo_data'=>'required|date|after:yesterday', 
@@ -137,7 +137,7 @@ class PaskelbtasKonkursoTsController extends Controller
     {
          $this->validate($request, [
         'paskelb_data'=>'required|date', 
-        'numeris'=>'required|min:6|max:9',         
+        'numeris'=>'required|min:6|max:9|unique:paskelbtas_konkurso_ts',         
         'pavadinimas'=>'required', 
         'nuoroda'=>'required', 
         'galiojimo_data'=>'required|date', 
@@ -154,17 +154,7 @@ class PaskelbtasKonkursoTsController extends Controller
        $konkursas->valanda=$request->valanda;
        $konkursas->po_id=$request->po_id;      
        $konkursas->pastabos=$request->pastabos;       
-       $konkursas->update();   
-       // if($request->has('file')){
-       //   $paths=$request->file('file'); 
-       //   foreach ($paths as $path) {
-       //          $fileupload = new FileUpload();   
-       //         $name=$path->store('public');
-       //           $fileupload->name = basename($name);   //saugom tik failo pavadinima
-       //           $fileupload->paskelbtas_konkurso_ts_id=$konkursas->id;
-       //           $fileupload->update();    
-       //        } 
-       //  } 
+       $konkursas->update();          
        return redirect()->route('paskelbtits.index');
     }
 

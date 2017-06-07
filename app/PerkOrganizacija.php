@@ -21,4 +21,8 @@ class PerkOrganizacija extends Model
     		->orWhere('adresas', 'like', '%' .$searchpo. '%')
             ->orWhere('kodas', 'like', '%' .$searchpo. '%');    		   		
     }
+    public function sutartis()
+    {
+        return $this->hasMany('App\Sutartis');
+    }
 }

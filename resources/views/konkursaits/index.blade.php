@@ -20,8 +20,8 @@
           <select class="form-control" id="pasibaige" name="pasibaige" onchange="sortVal();">
             <option value="" selected="selected">Pasirinkite</option>
             <option value="all">Rodyti visus</option>  
-            <option value="on">Nerodyti pasibaigusių konkursų</option>
-            <option value="end">Rodyti tik pasibaigusius konkursus</option>                    
+            <option value="on">Nerodyti pasibaigusių konkursų TS</option>
+            <option value="end">Rodyti tik pasibaigusius konkursų TS</option>                    
           </select>          
         </div>        
       </form>      
@@ -98,5 +98,15 @@
 </div> <!-- Container   -->
 
 @endsection
+@section('checkboxJquery')
 
+$(document).ready(function(){
+
+    $("#formName").on("change", function(){
+        $("#formName").append('selected', true);
+        $("#formName").submit();
+        preventDefault();
+    });
+});
+@endsection
 
