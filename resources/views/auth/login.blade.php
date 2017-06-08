@@ -55,7 +55,7 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Pamiršote spaltažodį?
+                                    Pamiršote slaptažodį?
                                 </a>
                             </div>
                         </div>

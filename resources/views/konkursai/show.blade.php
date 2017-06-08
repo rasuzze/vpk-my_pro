@@ -59,22 +59,18 @@
       <p style="line-height:34px;">Konkurso salygos:</p>
       <ul>
       @foreach ($files as $file)     
-        <a href="/storage/{{$file['name'] }}">
-          <li>{{$file->name}}
-            <form action="/file/{{$file->id}}" method="post">
+        <li>
+          <a href="/storage/{{$file['name'] }}">{{$file->name}}
+            <form action="/file/{{$file->id}}" method="post" style="display:inline;">
                     {{ csrf_field() }}
-                    <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="_method" value="delete">
                       <button class="btn btn-xs btn-default" value="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                  </form>
-          </li>
-        </a> 
+            </form>          
+          </a>
+        </li>
       @endforeach
       </ul>
     </div>         
-  </div>           
-
-
+  </div> 
 </div>
-
-
 @endsection

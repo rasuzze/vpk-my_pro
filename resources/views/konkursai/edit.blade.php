@@ -98,7 +98,7 @@
         </div>
         <div class="row">
           <div class="col-md-12"> 
-            <p style="line-height:34px;">Konkurso salygos:</p>
+            <p style="line-height:34px;">Konkurso dokumentai:</p>
             <ul>
             @foreach ($files as $file)     
               <a href="/storage/{{$file['name'] }}"><li>{{$file->name}}</li></a> 

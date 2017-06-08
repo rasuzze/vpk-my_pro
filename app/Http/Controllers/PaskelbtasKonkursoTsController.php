@@ -137,7 +137,7 @@ class PaskelbtasKonkursoTsController extends Controller
     {
          $this->validate($request, [
         'paskelb_data'=>'required|date', 
-        'numeris'=>'required|min:6|max:9|unique:paskelbtas_konkurso_ts',         
+        'numeris'=>'required|min:6|max:9',         
         'pavadinimas'=>'required', 
         'nuoroda'=>'required', 
         'galiojimo_data'=>'required|date', 

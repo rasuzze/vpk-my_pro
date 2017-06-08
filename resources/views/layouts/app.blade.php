@@ -13,11 +13,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.css" />
-    <!-- FullCalendar -->
-    <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/fullcalendar.min.css"/>
-    <link rel="stylesheet" href="css/fullcalendar.print.css" media="print"/>      -->   
-    <!-- // <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->    
+       
     <title>{{ config('app.name', 'VPK') }}</title>
     <!-- Styles -->   
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">   
@@ -39,7 +35,6 @@
                         VPK
                     </a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
@@ -78,8 +73,6 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                    
-                                    <!-- <li><a href="{{ route('kalendorius') }}">Kalendorius</a></li> -->
                                 </ul>
                             </li>
                         @endif
@@ -90,10 +83,7 @@
 
         @yield('content')
     </div>
-<!--  <script src="js/moment.min.js"></script>
-    <script src="js/fullcalendar.js"></script>
-    <script src="js/jquery.min.js"></script> -->
-   
+
     <!-- // <script src="js/app.js"></script> -->
     <!-- Select2 search field of Perkancioji organizacija  -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>

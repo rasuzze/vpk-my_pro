@@ -61,8 +61,8 @@ class PerkanciojiOrganizacijaController extends Controller
     public function update(Request $request, $id)
     {
          $this->validate($request, [
-        'pavadinimas'=>'required|unique:perk_organizacijas', 
-        'kodas'=>'nullable|unique:perk_organizacijas',         
+        'pavadinimas'=>'required|', 
+        'kodas'=>'nullable',         
         'adresas'=>'nullable', 
         'email'=>'nullable', 
         'tel'=>'nullable',              

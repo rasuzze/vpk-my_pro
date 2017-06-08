@@ -138,7 +138,7 @@ class PaskelbtasKonkursasController extends Controller
     {
         $this->validate($request, [
         'paskelb_data'=>'required|date', 
-        'numeris'=>'required|min:6|max:9|unique:paskelbtas_konkursas',         
+        'numeris'=>'required|min:6|max:9',         
         'pavadinimas'=>'required', 
         'nuoroda'=>'required', 
         'konkurso_data'=>'required|date', 
@@ -160,7 +160,7 @@ class PaskelbtasKonkursasController extends Controller
        $konkursas->update(); 
 
        if($request->hasFile('file')){      
-         $paths=$request->file('file');  
+         $paths=$request->file('file');        
          foreach ($paths as $path) {
           $name = $path->store('public');         
             $file = new FileUpload();                                
